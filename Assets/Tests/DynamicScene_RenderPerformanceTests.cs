@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
@@ -41,7 +42,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 #endif
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator Terrain()
     {
         yield return SceneManager.LoadSceneAsync(terrainTestSceneName, LoadSceneMode.Additive);
@@ -67,7 +68,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(terrainTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator RealtimeLighting_Directional()
     {
         yield return SceneManager.LoadSceneAsync(realTimeLightingDirectionalTestSceneName, LoadSceneMode.Additive);
@@ -93,7 +94,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingDirectionalTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator RealtimeLighting_Point()
     {
         yield return SceneManager.LoadSceneAsync(realTimeLightingPointLightTestSceneName, LoadSceneMode.Additive);
@@ -119,7 +120,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingPointLightTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator RealtimeLighting_Spot()
     {
         yield return SceneManager.LoadSceneAsync(realTimeLightingSpotlightTestSceneName, LoadSceneMode.Additive);
@@ -145,7 +146,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingSpotlightTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator SpiralFlame_RenderPerformance()
     {
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);
@@ -172,7 +173,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator SetTargetBufferMaterial()
     {
         yield return SceneManager.LoadSceneAsync(setTargetBufferMaterialTestSceneName, LoadSceneMode.Additive);
@@ -198,7 +199,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(setTargetBufferMaterialTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator RenderTextureMaterial()
     {
         yield return SceneManager.LoadSceneAsync(renderTextureMaterialTestSceneName, LoadSceneMode.Additive);
@@ -224,7 +225,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(renderTextureMaterialTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator StencilMaterial()
     {
         yield return SceneManager.LoadSceneAsync(stencilMaterialTestSceneName, LoadSceneMode.Additive);
@@ -250,7 +251,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(stencilMaterialTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator TransparentMaterial()
     {
         yield return SceneManager.LoadSceneAsync(transparentMaterialTestSceneName, LoadSceneMode.Additive);
@@ -276,7 +277,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(transparentMaterialTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator GpuInstacingMaterial()
     {
         yield return SceneManager.LoadSceneAsync(gpuInstancingMaterialTestSceneName, LoadSceneMode.Additive);
@@ -302,7 +303,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(gpuInstancingMaterialTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator StandardMaterial()
     {
         yield return SceneManager.LoadSceneAsync(standardMaterialTestSceneName, LoadSceneMode.Additive);
@@ -330,7 +331,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
 #if ENABLE_VR
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator SpiralFlame_RenderPerformance_RenderViewPortScale_90_Percent()
     {
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);
@@ -362,7 +363,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 #endif
 
 #if ENABLE_VR
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator SpiralFlame_RenderPerformance_RenderViewPortScale_50_Percent()
     {
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);

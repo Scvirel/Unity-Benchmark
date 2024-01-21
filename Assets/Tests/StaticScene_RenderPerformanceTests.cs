@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
@@ -31,7 +32,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
 #endif
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator EmptyScene()
     {
         yield return SceneManager.LoadSceneAsync(basicSceneName, LoadSceneMode.Additive);
@@ -57,7 +58,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(basicSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator BakedLighting()
     {
         yield return SceneManager.LoadSceneAsync(bakedLightingTestSceneName, LoadSceneMode.Additive);
@@ -83,7 +84,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(bakedLightingTestSceneName);
     }
 
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     public IEnumerator SinglePrimitiveCube()
     {
         yield return SceneManager.LoadSceneAsync(basicSceneName, LoadSceneMode.Additive);

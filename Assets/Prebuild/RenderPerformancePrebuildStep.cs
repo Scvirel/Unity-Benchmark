@@ -53,7 +53,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Android)
         {
             EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
-            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
+            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
             PlayerSettings.Android.minSdkVersion = minimumAndroidSdkVersion;
             PlayerSettings.Android.targetSdkVersion = targetAndroidSdkVersion;
         }
@@ -115,7 +115,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         QualitySettings.shadowDistance = 20;
         QualitySettings.shadowNearPlaneOffset = 3;
         QualitySettings.shadowCascades = 0;
-        QualitySettings.blendWeights = BlendWeights.TwoBones;
+        QualitySettings.skinWeights = SkinWeights.TwoBones;
         QualitySettings.vSyncCount = 2;
         QualitySettings.lodBias = 0.7f;
         QualitySettings.maximumLODLevel = 0;
@@ -140,7 +140,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         QualitySettings.shadowDistance = 150;
         QualitySettings.shadowNearPlaneOffset = 3;
         QualitySettings.shadowCascades = 4;
-        QualitySettings.blendWeights = BlendWeights.FourBones;
+        QualitySettings.skinWeights = SkinWeights.FourBones;
         QualitySettings.vSyncCount = 1;
         QualitySettings.lodBias = 2;
         QualitySettings.maximumLODLevel = 0;
