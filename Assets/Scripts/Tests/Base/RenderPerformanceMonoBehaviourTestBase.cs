@@ -1,14 +1,10 @@
-﻿#if UNITY_2018_1_OR_NEWER // Unity Performance Testing Extension supported on 2018.1 or newer
-using System;
+﻿using System;
 using System.Linq;
 using Unity.PerformanceTesting;
 using UnityEngine;
 using UnityEngine.TestTools;
 #if UNITY_ANALYTICS
 using UnityEngine.Analytics;
-#endif
-#if ENABLE_VR && UNITY_2017_1_OR_NEWER
-using UnityEngine.XR;
 #endif
 
 public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IMonoBehaviourTest
@@ -106,20 +102,6 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
         }
     }
 
-    public void Awake()
-    {
-#if ENABLE_VR && UNITY_2017_1_OR_NEWER
-        if (XRSettings.enabled)
-        {
-            var thisCamera = Camera.main.gameObject.GetComponent<Camera>();
-            if (thisCamera != null)
-            {
-                XRDevice.DisableAutoXRCameraTracking(thisCamera, true);
-            }
-        }
-#endif
-    }
-
     public virtual void RunStartCode()
     {
 #if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
@@ -129,13 +111,6 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 
     private void Start()
     {
-#if ENABLE_VR
-        if (XRSettings.enabled && !XRSettings.isDeviceActive)
-        {
-            Debug.LogAssertion("Expect XRSettings.isDeviceActive to be true, but it is false. Terminating test.");
-        }
-#endif
-
         RunStartCode();
     }
 
@@ -145,13 +120,6 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
         {
             FrameCount++;
             SampleFps();
-#if ENABLE_VR
-            // Currently XRStats.TryGetGPUTimeLastFrame only works on OculusRift and OpenVR on Windows
-            if (XRSettings.enabled && Application.platform == RuntimePlatform.WindowsPlayer)
-            {
-                SampleGpuTimeLastFrame();
-            }
-#endif
         }
 
         if (IsMetricsCaptured)
@@ -178,23 +146,6 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     private float GetFps()
     {
         return (Time.renderedFrameCount - startFrameCount) / Time.unscaledDeltaTime;
-    }
-    
-    private void SampleGpuTimeLastFrame()
-    {
-        var gpuTimeLastFrame = GetGpuTimeLastFrame();
-        Measure.Custom(GpuTimeLastFrameSg, gpuTimeLastFrame * 1000);
-    }
-
-    private float GetGpuTimeLastFrame()
-    {
-        float gpuTimeLastFrame;
-        float renderTime = 0;
-        if (XRStats.TryGetGPUTimeLastFrame(out gpuTimeLastFrame))
-        {
-            renderTime = gpuTimeLastFrame;
-        }
-        return renderTime;
     }
 
     public void FindRenderedObjectMetrics()
@@ -227,4 +178,3 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
         tris = trianglesLength;
     }
 }
-#endif

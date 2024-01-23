@@ -8,7 +8,7 @@
 //4) Rendering to prefab render texture
 //5) Rendering to constructed render texture
 
-public class SetTargetBufferTest : MonoBehaviour {
+public class SetTargetBuffer : MonoBehaviour {
     public Camera depth_camera;
     public Camera color_camera;
     public Camera clear_camera;

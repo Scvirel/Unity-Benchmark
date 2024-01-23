@@ -1,14 +1,8 @@
-﻿#if UNITY_2018_1_OR_NEWER
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
-using NUnit.Framework;
 using UnityEngine.TestTools;
-#if ENABLE_VR
-using UnityEngine.XR;
-#endif
 
 public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
 {
@@ -19,18 +13,6 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         new SampleGroupDefinition("Camera.Render"),
         new SampleGroupDefinition("Render.Mesh"),
     };
-
-    [SetUp]
-    public void Setup()
-    {
-#if ENABLE_VR
-        if (XRSettings.enabled)
-        {
-            Array.Resize(ref SamplerNames, SamplerNames.Length + 1);
-            SamplerNames[SamplerNames.Length - 1] = new SampleGroupDefinition("XR.WaitForGPU");
-        }
-#endif
-    }
 
     [UnityTest, Performance]
     public IEnumerator EmptyScene()
@@ -110,4 +92,3 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(basicSceneName);
     }
 }
-#endif
